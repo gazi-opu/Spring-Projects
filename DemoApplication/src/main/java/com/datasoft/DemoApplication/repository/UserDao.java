@@ -1,5 +1,6 @@
 package com.datasoft.DemoApplication.repository;
 
+import com.datasoft.DemoApplication.model.Role;
 import com.datasoft.DemoApplication.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,18 @@ public class UserDao {
         return new ArrayList<>();
     }
 
+    public User findUserByUserName(String userName) {
+        String query ="SELECT * FROM user WHERE BINARY UserName = ? ";
+        try{
+            return jdbcTemplate.queryForObject(query,new Object[]{userName},new UserRowMapper());
+        }catch (DataAccessException dae){
+            dae.printStackTrace();
+            dae.getLocalizedMessage();
+            return new User();
+        }
+    }
+
+
     class UserRowMapper implements RowMapper<User>{
         @Nullable
         @Override
@@ -45,6 +58,9 @@ public class UserDao {
             user.setFirstName(resultSet.getString("First Name"));
             user.setMiddleName(resultSet.getString("Middle Name"));
             user.setLastName(resultSet.getString("Last Name"));
+            Role role = new Role();
+            role.setId(resultSet.getInt("role_id"));
+            user.setRole(role);
             return user;
         }
     }
