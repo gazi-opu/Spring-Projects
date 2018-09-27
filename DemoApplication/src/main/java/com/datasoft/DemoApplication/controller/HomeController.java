@@ -53,6 +53,15 @@ public class HomeController {
 
         return "home/index";
     }
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register(Model model){
+        return "register/register";
+    }
+
+    @RequestMapping(value = "/forgetPassword", method = RequestMethod.GET)
+    public String forgetPassword(Model model){
+        return "register/forgot-password";
+    }
 
     @RequestMapping(value = "/403",method = RequestMethod.GET)
     public String error(Model model){
