@@ -2,18 +2,20 @@ package com.datasoft.DemoApplication.repository;
 
 import com.datasoft.DemoApplication.model.Role;
 import com.datasoft.DemoApplication.model.User;
+import com.sun.istack.internal.Nullable;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+//import org.springframework.lang.Nullable;
 
 @Slf4j
 @Repository

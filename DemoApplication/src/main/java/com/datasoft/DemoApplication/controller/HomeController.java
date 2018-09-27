@@ -51,7 +51,7 @@ public class HomeController {
 
 //        model.addAttribute("roleId", userDao.findByUserName(auth.getName()).getRole().getId());
 
-        return "home/home";
+        return "home/index";
     }
 
     @RequestMapping(value = "/403",method = RequestMethod.GET)

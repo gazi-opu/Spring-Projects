@@ -24,7 +24,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","/home","/userData","/register/**").permitAll()
+                .antMatchers("/","/login").permitAll()
+                .antMatchers("/dashboard").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -33,10 +34,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .failureUrl("/login?error")
                 .defaultSuccessUrl("/dashboard")
                 .and()
-                .logout().permitAll()
+                .logout()
                 .logoutSuccessUrl("/login?logout")
                 .and()
-                .exceptionHandling().accessDeniedPage("/403");
+                .exceptionHandling().accessDeniedPage("/403")
+        ;
     }
 
 
